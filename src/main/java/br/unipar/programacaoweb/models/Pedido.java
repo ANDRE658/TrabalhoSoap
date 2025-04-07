@@ -26,6 +26,4 @@ public class Pedido {
     private String observacao;
     private String status;
 
-
-
 }

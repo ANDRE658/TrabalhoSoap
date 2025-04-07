@@ -22,12 +22,14 @@ public class ItensPedidoDAO {
     }
 
     public void atualizar(ItensPedido itensPedido) {
+        EntityManager em = EntityManagerUtil.getEm();  // CRIAR AQUI
         try {
             em.getTransaction().begin();
             em.merge(itensPedido);
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
+            e.printStackTrace(); // <-- sempre bom para debug
         } finally {
             em.close();
         }

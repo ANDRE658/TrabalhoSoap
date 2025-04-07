@@ -77,9 +77,9 @@ public class ClienteDAO {
                     .setParameter("cpf", cpf)
                     .getSingleResult();
         } catch (NoResultException e) {
-            return null;  // Retorna null ao invés de lançar exceção
+            return null;
         } catch (Exception e) {
-            e.printStackTrace(); // Para debug, pode remover depois
+            e.printStackTrace();
             return null;
         }
     }

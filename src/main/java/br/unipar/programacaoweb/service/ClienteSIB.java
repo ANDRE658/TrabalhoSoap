@@ -2,7 +2,6 @@ package br.unipar.programacaoweb.service;
 
 import br.unipar.programacaoweb.daos.ClienteDAO;
 import br.unipar.programacaoweb.models.Cliente;
-import jakarta.jws.WebParam;
 import jakarta.jws.WebService;
 
 import java.util.List;
@@ -19,7 +18,7 @@ public class ClienteSIB implements ClienteSEI {
                                     String telefone,
                                     String endereco,
                                     String dataNascimento){
-        if(usuarioExiste(cpf)){
+        if(clienteExiste(cpf)){
             return "Cliente já cadastrado!";
         }
         if(nome == null || nome.isEmpty()){
@@ -36,7 +35,7 @@ public class ClienteSIB implements ClienteSEI {
         return "Cliente salvo com sucesso!";
     }
 
-    public boolean usuarioExiste(String nome){
+    public boolean clienteExiste(String nome){
         ClienteDAO clienteDAO = new ClienteDAO();
         if(clienteDAO.buscarPorCpf(nome) != null){
             return true;

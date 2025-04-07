@@ -17,6 +17,12 @@ public class BordaSIB implements BordaSEI {
 
     @Override
     public String salvarNovaBorda(String sabor) {
+        if (sabor == null || sabor.isEmpty()) {
+            return "Sabor inválido!";
+        }
+        if (bordaExiste(sabor)) {
+            return "Borda já cadastrada!";
+        }
         try{
             Borda novaBorda = new Borda();
             novaBorda.setSabor(sabor);
@@ -25,6 +31,15 @@ public class BordaSIB implements BordaSEI {
             return "Borda salva com sucesso!";
         }catch (Exception e){
             return "Erro ao salvar a borda: " + e.getMessage();
+        }
+    }
+
+    public boolean bordaExiste(String sabor){
+        BordaDAO bordaDAO = new BordaDAO();
+        if(bordaDAO.buscarPorSabor(sabor) != null){
+            return true;
+        }else{
+            return false;
         }
     }
 

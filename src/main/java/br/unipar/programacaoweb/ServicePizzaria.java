@@ -1,8 +1,12 @@
 package br.unipar.programacaoweb;
 
+import br.unipar.programacaoweb.daos.PedidoDAO;
 import br.unipar.programacaoweb.models.ItensPedido;
+import br.unipar.programacaoweb.models.Pedido;
 import br.unipar.programacaoweb.service.*;
 import jakarta.xml.ws.Endpoint;
+
+import java.util.List;
 
 public class ServicePizzaria {
     public static void main(String[] args) {
@@ -18,6 +22,7 @@ public class ServicePizzaria {
 
         Endpoint.publish("http://localhost:8080/pizzaria/pizza", new PizzaSIB());
         System.out.println("Serviço de Pizza rodando em: http://localhost:8080/pizzaria/pizza");
+
     }
 }
 

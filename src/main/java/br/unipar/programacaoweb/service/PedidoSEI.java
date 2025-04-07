@@ -1,8 +1,11 @@
 package br.unipar.programacaoweb.service;
 
+import br.unipar.programacaoweb.models.Pedido;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
 import jakarta.jws.WebService;
+
+import java.util.List;
 
 @WebService
 public interface PedidoSEI {
@@ -10,29 +13,35 @@ public interface PedidoSEI {
     String boasVindas(@WebParam(name = "nome") String nome);
 
     @WebMethod
-    String salvarNovoPedido(@WebParam(name = "idCliente") Integer idCliente,
-                            @WebParam(name = "idItensPedido") Integer idItensPedido,
-                            @WebParam(name = "valorTotal") float valorTotal,
-                            @WebParam(name = "observacao") String observacao,
-                            @WebParam(name = "status") String status);
-
-
-    @WebMethod
-    String listarPedidos(@WebParam(name = "idCliente") Integer idCliente);
+    String salvarNovoPedido(@WebParam(name = "cpf") String cpf,
+                            @WebParam(name = "sabor") String sabor,
+                            @WebParam(name = "borda") String borda,
+                            @WebParam(name = "tamanho") String tamanho,
+                            @WebParam(name = "quantidade") int quantidade,
+                            @WebParam(name = "observacao") String observacao);
 
     @WebMethod
     String excluirPedido(@WebParam(name = "id") Integer id);
 
     @WebMethod
-    String editarPedido(@WebParam(name = "id") Integer id,
-                         @WebParam(name = "valorTotal") float valorTotal,
-                         @WebParam(name = "observacao") String observacao,
-                         @WebParam(name = "status") String status);
+    String editarPedido(@WebParam(name = "IdPedido") int idPedido,
+                        @WebParam(name = "sabor") String sabor,
+                        @WebParam(name = "borda") String borda,
+                        @WebParam(name = "tamanho") String tamanho,
+                        @WebParam(name = "quantidade") int quantidade,
+                        @WebParam(name = "observacao") String observacao);
+
+
     @WebMethod
     String buscarPedido(@WebParam(name = "id") Integer id);
 
     @WebMethod
-    String buscarTodosPedidos();
+    List<Pedido> buscarTodosPedidos();
 
+    @WebMethod
+    String buscarPedidosPorCliente(@WebParam(name = "cpf") String cpf);
+
+    @WebMethod
+    String acompanharPedido(@WebParam(name = "id") Integer id);
 
 }

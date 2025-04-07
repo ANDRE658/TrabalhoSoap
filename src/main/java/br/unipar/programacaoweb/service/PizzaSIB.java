@@ -20,6 +20,9 @@ public class PizzaSIB implements PizzaSEI {
         if(pizzaExiste(sabor)){
             return "Pizza já existe!";
         }
+        if(sabor == null || sabor.isEmpty()){
+            return "Sabor inválido!";
+        }
         PizzaDAO pizzaDAO = new PizzaDAO();
         Pizza pizza = new Pizza();
         pizza.setSabor(sabor);
